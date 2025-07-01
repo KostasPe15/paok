@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:paok/views/pages/login_page.dart';
 import 'package:paok/views/widgets/widget_tree.dart';
 
 class SignupPage extends StatefulWidget {
@@ -11,10 +12,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  TextEditingController controllerEmail = TextEditingController(text: 'Abc');
-  TextEditingController controllerPw = TextEditingController(text: 'Abc');
-  String confirmedEmail = 'Abc';
-  String confirmedPw = 'Abc';
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerPw = TextEditingController();
 
   @override
   void dispose() {
@@ -31,6 +30,14 @@ class _SignupPageState extends State<SignupPage> {
             password: controllerPw.text.trim(),
           );
       print(userCredential);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return LoginPage(title: "Login");
+          },
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       print(e.message);
     }
@@ -82,7 +89,6 @@ class _SignupPageState extends State<SignupPage> {
                       FilledButton(
                         onPressed: () async {
                           await createUserEmailAndPassword();
-                          //onLoginPressed();
                         },
                         style: FilledButton.styleFrom(
                           minimumSize: Size(double.infinity, 40.0),
@@ -99,20 +105,5 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
     );
-  }
-
-  void onLoginPressed() {
-    if (confirmedEmail == controllerEmail.text &&
-        confirmedPw == controllerPw.text) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return WidgetTree();
-          },
-        ),
-        (route) => false,
-      );
-    }
   }
 }

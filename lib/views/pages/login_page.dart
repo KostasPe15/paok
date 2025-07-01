@@ -13,10 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController controllerEmail = TextEditingController(text: 'Abc');
-  TextEditingController controllerPw = TextEditingController(text: 'Abc');
-  String confirmedEmail = 'Abc';
-  String confirmedPw = 'Abc';
+  TextEditingController controllerEmail = TextEditingController();
+  TextEditingController controllerPw = TextEditingController();
 
   @override
   void dispose() {
@@ -33,6 +31,14 @@ class _LoginPageState extends State<LoginPage> {
             password: controllerPw.text.trim(),
           );
       print(userCredential);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return WidgetTree();
+          },
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       print(e.message);
     }
@@ -84,7 +90,6 @@ class _LoginPageState extends State<LoginPage> {
                       FilledButton(
                         onPressed: () async {
                           await loginUserWithEmailAndPassword();
-                          //onLoginPressed();
                         },
                         style: FilledButton.styleFrom(
                           minimumSize: Size(double.infinity, 40.0),
@@ -101,20 +106,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  }
-
-  void onLoginPressed() {
-    if (confirmedEmail == controllerEmail.text &&
-        confirmedPw == controllerPw.text) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return WidgetTree();
-          },
-        ),
-        (route) => false,
-      );
-    }
   }
 }

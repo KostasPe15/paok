@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paok/data/constants.dart';
 import 'package:paok/views/pages/course_page.dart';
@@ -9,28 +10,32 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> list = [
-      KValue.keyConcepts,
-      KValue.basicLayout,
-      KValue.cleanUI,
-      KValue.fixBugs,
-    ];
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 10.0),
-            HeroWidget(title: 'Flutter', nextPage: CoursePage()),
-            ...List.generate(list.length, (index) {
-              return ContainerWidget(
-                title: list.elementAt(index),
-                description: 'You signed in',
-              );
-            }),
-          ],
-        ),
-      ),
+    return FutureBuilder(
+      future: FirebaseFirestore.instance.collection("tasks").get(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 10.0),
+                HeroWidget(title: 'Flutter', nextPage: CoursePage()),
+                ...List.generate(snapshot.data!.docs.length, (index) {
+                  return ContainerWidget(
+                    title: snapshot.data!.docs[index].data()["title"],
+                    description:
+                        snapshot.data!.docs[index].data()["description"],
+                  );
+                }),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

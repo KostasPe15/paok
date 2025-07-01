@@ -19,8 +19,12 @@ class OnboardingPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Lottie.asset('assets/lotties/dog.json', height: 400.0),
-                SizedBox(height: 20.0),
+                Lottie.asset('assets/lotties/dog.json'),
+                Text(
+                  'This is a test app',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+                ),
+                SizedBox(height: 60.0),
                 FilledButton(
                   onPressed: () {
                     Navigator.push(
