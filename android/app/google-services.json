@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "771010884368",
+    "project_id": "paok-8cedb",
+    "storage_bucket": "paok-8cedb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771010884368:android:dd4c3cf98c428ff25aeb95",
+        "android_client_info": {
+          "package_name": "com.example.paok"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcuBaXKDIiPwGQJtvN8qO_3SScNf2qU60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
