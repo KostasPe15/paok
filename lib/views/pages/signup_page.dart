@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:paok/views/widgets/widget_tree.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
-
-  final String title;
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   TextEditingController controllerEmail = TextEditingController(text: 'Abc');
   TextEditingController controllerPw = TextEditingController(text: 'Abc');
   String confirmedEmail = 'Abc';
@@ -25,10 +23,10 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  Future<void> loginUserWithEmailAndPassword() async {
+  Future<void> createUserEmailAndPassword() async {
     try {
       final userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
+          .createUserWithEmailAndPassword(
             email: controllerEmail.text.trim(),
             password: controllerPw.text.trim(),
           );
@@ -83,13 +81,13 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 20.0),
                       FilledButton(
                         onPressed: () async {
-                          await loginUserWithEmailAndPassword();
+                          await createUserEmailAndPassword();
                           //onLoginPressed();
                         },
                         style: FilledButton.styleFrom(
                           minimumSize: Size(double.infinity, 40.0),
                         ),
-                        child: Text(widget.title),
+                        child: Text("Sign Up"),
                       ),
                       SizedBox(height: 50.0),
                     ],

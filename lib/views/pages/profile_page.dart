@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:paok/data/notifiers.dart';
 import 'package:paok/views/pages/welcome_page.dart';
@@ -19,14 +20,15 @@ class ProfilePage extends StatelessWidget {
             title: Text('Logout'),
             onTap: () {
               selectedPageNotifier.value = 0;
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return WelcomePage();
-                  },
-                ),
-              );
+              FirebaseAuth.instance.signOut();
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return WelcomePage();
+              //     },
+              //   ),
+              // );
             },
           ),
         ],

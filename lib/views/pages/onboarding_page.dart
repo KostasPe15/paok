@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:paok/views/pages/signup_page.dart';
 import 'package:paok/views/widgets/widget_tree.dart';
 
 import 'login_page.dart';
@@ -26,7 +27,7 @@ class OnboardingPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return LoginPage(title: 'Register');
+                          return SignupPage();
                         },
                       ),
                     );
