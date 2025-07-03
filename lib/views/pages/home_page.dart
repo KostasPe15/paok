@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:paok/data/constants.dart';
 import 'package:paok/views/pages/course_page.dart';
 import 'package:paok/views/widgets/container_widget.dart';
 import 'package:paok/views/widgets/hero_widget.dart';
@@ -29,6 +28,7 @@ class HomePage extends StatelessWidget {
                     title: snapshot.data!.docs[index].data()["title"],
                     description:
                         snapshot.data!.docs[index].data()["description"],
+                    imageURL: snapshot.data!.docs[index].data()["imageURL"],
                   );
                 }),
               ],

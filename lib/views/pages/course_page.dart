@@ -56,14 +56,16 @@ class _CoursePageState extends State<CoursePage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    HeroWidget(title: activity.activity),
+                    HeroWidget(title: 'Flutter'),
+                    SizedBox(height: 20),
+                    Text('Call from random API:'),
                     Text(activity.activity),
                   ],
                 ),
               ),
             );
           } else {
-            widget = Center(child: Text('error'));
+            widget = Center(child: CircularProgressIndicator());
           }
           return widget;
         },
